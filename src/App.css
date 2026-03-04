@@ -270,10 +270,15 @@ button {
 }
 
 .storageBox {
+  width: 34px;
+  height: 34px;
   font-size: 1.3em;
-  padding: 4px 8px;
-  border: 1px solid rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.15);
 }
 
 .storageBox.done {
