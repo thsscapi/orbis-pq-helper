@@ -566,6 +566,25 @@ export default function App() {
         onToggle={() => toggleAcc("tower")}
       >
         <ImgBlock src={ASSETS.tower} alt="Statue Pieces location" />
+        <div className="attrib">
+          Statue Piece Location image from{" "}
+          <a
+            href="https://forum.maplelegends.com/index.php?members/hondony.55099/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Hodony
+          </a>
+          &apos;s{" "}
+          <a
+            href="https://forum.maplelegends.com/index.php?threads/orbis-party-quest-guide.54745/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Orbis Party Quest Guide
+          </a>
+          .
+        </div>
       </Accordion>
 
       <footer className="appFooter">
