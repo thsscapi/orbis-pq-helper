@@ -555,3 +555,10 @@ body {
 .accHeader {
   width: 100% !important;
 }
+
+@media (prefers-color-scheme: light) {
+  button {
+    background: #1a1a1a;
+    color: #f7f7f7;
+  }
+}
