@@ -41,7 +41,7 @@ body {
   width: 100%;
   border: 0;
   background: transparent;
-  color: #fff;
+  color: #f7f7f7;
   padding: 12px 14px;
   display: flex;
   justify-content: space-between;
@@ -194,8 +194,8 @@ button {
 }
 
 .pickBtn {
-  background: #f7f7f7;
-  color: #111;
+  background: #1a1a1a;
+  color: #f7f7f7;
   border-radius: 12px;
   padding: 10px 16px;
   font-weight: 900;
@@ -205,7 +205,7 @@ button {
 .pickBtn.active {
   background: #C96A00;
   border-color: #C96A00;
-  color: #fff;
+  color: #f7f7f7;
   box-shadow: 0 0 0 2px rgba(252,133,0,0.25);
 }
 
@@ -411,7 +411,7 @@ button {
 
 .donateBtn:hover {
   background: #C96A00;
-  color: #fff;
+  color: #f7f7f7;
 }
 
 .footerCredits {
