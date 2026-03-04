@@ -603,7 +603,7 @@ export default function App() {
               rel="noreferrer"
               className="donateBtn"
             >
-              <img src="https://maplelegends.com/static/images/lib/item/02030008.png" alt="Coffee Milk" className="donateImage"/> If you found this tool useful
+              <img src="https://maplelegends.com/static/images/lib/item/02030008.png" alt="Coffee Milk" className="donateImage"/>  If you found this tool useful, consider giving me a tip
             </a>
           </div>
         </div>

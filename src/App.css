@@ -394,6 +394,7 @@ button {
 
 .donateImage {
   width: 16px;
+  height: auto;
 }
 
 .donateBtn {
