@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import "./App.css";
 
 /* -------------------------
@@ -158,7 +159,9 @@ function StorageTracker() {
   async function copy() {
     try {
       await navigator.clipboard.writeText(raw);
-    } catch {}
+    } catch {
+      // Silently fail if clipboard access is denied
+    }
   }
 
   return (
@@ -187,6 +190,8 @@ function StorageTracker() {
 /* -------------------------
    Main App
 -------------------------- */
+
+const ACC_KEYS = ["lobby", "lounge", "sealed", "storage", "up", "tower"];
 
 export default function App() {
 
@@ -255,8 +260,6 @@ export default function App() {
 
     setChainDone(new Set());
   }
-
-  const ACC_KEYS = ["lobby", "lounge", "sealed", "storage", "up", "tower"];
 
   const allOpen = useMemo(() => {
     return ACC_KEYS.every((k) => acc[k]);
@@ -496,7 +499,7 @@ export default function App() {
             </div>
 
             <div className="chainList">
-              {chain.map((step, idx) => {
+              {chain.map((step) => {
                 const done = chainDone.has(step);
 
                 return (
@@ -647,6 +650,7 @@ export default function App() {
         </button>
       </div>
 
+      <Analytics />
     </div>
   );
 }
