@@ -198,6 +198,8 @@ export default function App() {
 
   const [chainDone, setChainDone] = useState(new Set());
 
+  const [showEakHelp, setShowEakHelp] = useState(false);
+
   const allSelected =
     sel["500"] != null &&
     sel["410"] != null &&
@@ -414,6 +416,26 @@ export default function App() {
         <p className="para">
           Run 5-0-0, 4-1-0, 4-0-1 and enter Eak's result. The app will determine the only valid remaining order.
         </p>
+
+        <button
+          className="minorBtn eakBtn"
+          onClick={() => setShowEakHelp(!showEakHelp)}
+        >
+          {showEakHelp ? "Hide" : "How to read Eak"}
+        </button>
+
+        {showEakHelp && (
+          <div className="eakHelp">
+            <img
+              src="/img/eak-sample.png"
+              className="eakHelpImg"
+              alt="Example of Eak dialog"
+            />
+            <div className="eakHelpCaption">
+              Use the <strong>second number</strong> only.
+            </div>
+          </div>
+        )}
 
         <div className="sealedGrid">
 

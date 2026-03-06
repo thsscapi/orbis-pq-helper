@@ -265,6 +265,10 @@ button {
   margin: 0;
 }
 
+.eakBtn {
+  font-size: 0.8em;
+}
+
 .eakLabel {
   display: flex;
   align-items: center;
@@ -276,6 +280,23 @@ button {
   height: 28px;
   width: auto;
   image-rendering: pixelated;
+}
+
+.eakHelp {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.eakHelpImg {
+  width: 100%;
+  max-width: 520px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.eakHelpCaption {
+  font-size: 12px;
+  opacity: 0.9;
 }
 
 /* Chain */
