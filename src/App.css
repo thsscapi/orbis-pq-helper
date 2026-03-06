@@ -467,15 +467,11 @@ button {
 }
 
 .footerCredits {
-  margin-top: 4px;
-  font-size: 0.8rem;
-  opacity: 0.85;
-  text-align: left;
+  margin-top: 12px;
 }
 
-.footerCredits a {
+.footerLinks a, .footerCredits a {
   color: #fc8500;
-  text-decoration: underline;
 }
 
 .donateImage {
