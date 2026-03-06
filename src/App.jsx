@@ -491,7 +491,7 @@ export default function App() {
           <div className="chainBox">
 
             <div className="sealedSummary">
-              You entered: <strong>{patternDashed}</strong> The only possible remaining solutions are:
+              You entered: <strong>{patternDashed}</strong>. The only possible remaining solutions are:
             </div>
 
             <div className="chainList">
