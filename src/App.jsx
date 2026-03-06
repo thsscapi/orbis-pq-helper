@@ -491,7 +491,7 @@ export default function App() {
           <div className="chainBox">
 
             <div className="sealedSummary">
-              Pattern <strong>{patternDashed}</strong> has only one valid remaining order:
+              You entered: <strong>{patternDashed}</strong> The only possible remaining solutions are:
             </div>
 
             <div className="chainList">
