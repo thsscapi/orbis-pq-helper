@@ -286,6 +286,7 @@ export default function App() {
 
         <p className="appDescription">
           A small helper tool for Orbis PQ (MapleLegends). It is designed to be a one-stop reference for leading OPQ.
+         <br/>This app does not teach you how to run OPQ. For that, I highly recommend <a href="https://forum.maplelegends.com/index.php?threads/orbis-party-quest-guide.54745/">Hondony's Orbis Party Quest Guide</a>.
         </p>
 
         <div className="appCredits">
