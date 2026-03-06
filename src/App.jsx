@@ -143,42 +143,55 @@ function ImgBlock({ src, alt }) {
 
 function StorageTracker() {
   const order = [1, 10, 9, 13, 11, 6, 12, 2, 5, 15, 8, 4, 7, 3, 14];
-  const raw = order.join("-");
 
   const [index, setIndex] = useState(0);
 
-  function next() {
+  const remaining = order.slice(index);
+  const remainingText = remaining.join("-");
+
+  function handleKilled() {
     setIndex((i) => Math.min(i + 1, order.length));
   }
 
-  function reset() {
+  function handleReset() {
     setIndex(0);
   }
 
-  async function copy() {
+  async function handleCopyRemaining() {
     try {
-      await navigator.clipboard.writeText(raw);
+      await navigator.clipboard.writeText(remainingText);
     } catch {}
   }
 
   return (
     <div className="storageWrap">
       <div className="storageCopyRow">
-        <input className="storageCopyInput" value={raw} readOnly name="name" id="storageInput" autoComplete="none" />
-        <button className="minorBtn" onClick={copy}>Copy to clipboard</button>
+        <input 
+          className="storageCopyInput" 
+          value={remainingText} 
+          readOnly 
+          name="name" 
+          id="storageInput" 
+          autoComplete="none" 
+        />
+        <button className="minorBtn" type="button" onClick={handleCopyRemaining}>
+          Copy to clipboard
+        </button>
       </div>
 
       <div className="storageSequence">
         {order.map((n, i) => (
-          <span key={i} className={`storageBox ${i < index ? "done" : ""}`}>
+          <span 
+            key={i} 
+            className={`storageBox ${i < index ? "done" : ""}`}>
             {n}
           </span>
         ))}
       </div>
 
       <div className="storageControls">
-        <button className="minorBtn" onClick={next}>Next</button>
-        <button className="minorBtn" onClick={reset}>Reset</button>
+        <button className="minorBtn" onClick={handleKilled}>Cellion Spawned</button>
+        <button className="minorBtn" onClick={handleReset}>Reset</button>
       </div>
     </div>
   );
