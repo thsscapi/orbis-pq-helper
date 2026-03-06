@@ -360,7 +360,7 @@ export default function App() {
             target="_blank"
             rel="noreferrer"
           >
-            Hodony
+            Hondony
           </a>
           {" "}in their{" "}
           <a
@@ -391,7 +391,7 @@ export default function App() {
             target="_blank"
             rel="noreferrer"
           >
-            Hodony
+            Hondony
           </a>
           &apos;s{" "}
           <a
@@ -597,7 +597,7 @@ export default function App() {
             target="_blank"
             rel="noreferrer"
           >
-            Hodony
+            Hondony
           </a>
           &apos;s{" "}
           <a
