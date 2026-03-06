@@ -474,6 +474,12 @@ button {
   color: #fc8500;
 }
 
+.footerLinks a img {
+  height: 1em;
+  vertical-align: -0.15em;
+  margin-right: 4px;
+}
+
 .donateImage {
   width: 16px;
   height: 100%;

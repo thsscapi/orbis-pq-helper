@@ -615,7 +615,7 @@ export default function App() {
         <div className="footerInner">
           <div className="footerLeft">
             <div className="footerLinks">
-              Other MapleLegends tools by Sparrow: <a href="https://butler-pq-helper.vercel.app/">Phantom Forest Navigator</a>
+              Other MapleLegends tools by Sparrow: <a href="https://butler-pq-helper.vercel.app/"><img src="https://maplelegends.com/static/images/lib/item/03992040.png"/>Phantom Forest Navigator</a>
             </div>
             <div className="footerCredits">
               Made with love for <a href="https://maplelegends.com/" target="_blank" rel="noreferrer">MapleLegends</a>, but not affiliated. For feedback, please DM thsscapi on <a href="https://forum.maplelegends.com/index.php?conversations/add&amp;to=thsscapi" target="_blank" rel="noreferrer">ML forums</a>.
