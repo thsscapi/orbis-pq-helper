@@ -412,52 +412,50 @@ export default function App() {
       >
 
         <p className="para">
-          Attempt the following 3 tests in order, and input what Eak says for each "0 platforms" or "1 platform". 
-          <br/>Then attempt the remaining tests indicated below.
+          Run 5-0-0, 4-1-0, 4-0-1 and enter Eak's result. The app will determine the only valid remaining order.
         </p>
 
         <div className="sealedGrid">
 
-        {PROBES.map((p) => {
-          const value = sel[p.id];
+          {PROBES.map((p) => {
+            const value = sel[p.id];
 
-          return (
-            <div className="probeCard" key={p.id}>
+            return (
+              <div className="probeCard" key={p.id}>
 
-              <div className="imgCard">
-                <img src={p.imgSrc} className="probeImg" />
+                <div className="imgCard">
+                  <img src={p.imgSrc} className="probeImg" />
+                </div>
+
+                <div className="probeTitle">{p.text}</div>
+
+                <div className="eakLabel">
+                  <img
+                    className="eakIcon"
+                    src="https://maplelegends.com/static/images/lib/npc/2013001.png"
+                  />
+                  <span>Eak says:</span>
+                </div>
+
+                <div className="btnRow">
+                  <button
+                    className={`pickBtn ${value === 0 ? "active" : ""}`}
+                    onClick={() => setProbe(p.id, 0)}
+                  >
+                    0 <span>platforms</span>
+                  </button>
+
+                  <button
+                    className={`pickBtn ${value === 1 ? "active" : ""}`}
+                    onClick={() => setProbe(p.id, 1)}
+                  >
+                    1 <span>platform</span>
+                  </button>
+                </div>
+
               </div>
-
-              <div className="probeTitle">{p.text}</div>
-
-              <div className="eakLabel">
-                <img
-                  className="eakIcon"
-                  src="https://maplelegends.com/static/images/lib/npc/2013001.png"
-                />
-                <span>Eak says:</span>
-              </div>
-
-              <div className="btnRow">
-                <button
-                  className={`pickBtn ${value === 0 ? "active" : ""}`}
-                  onClick={() => setProbe(p.id, 0)}
-                >
-                  0 platforms
-                </button>
-
-                <button
-                  className={`pickBtn ${value === 1 ? "active" : ""}`}
-                  onClick={() => setProbe(p.id, 1)}
-                >
-                  1 platform
-                </button>
-              </div>
-
-            </div>
-          );
-        })}
-
+            );
+          })}
         </div>
 
         {allSelected && !chain && (
@@ -470,8 +468,8 @@ export default function App() {
         {allSelected && chain && (
           <div className="chainBox">
 
-            <div className="chainTitle">
-              Check these remaining combinations in order.
+            <div className="sealedSummary">
+              Pattern <strong>{patternDashed}</strong> has only one valid remaining order:
             </div>
 
             <div className="chainList">
@@ -532,23 +530,27 @@ export default function App() {
       Hit the levers in the sequence shown, about once every 1.5s.
       </p>
 
+      <div className="leverSequenceMobile">
+        3234 → 3235 → 3234 → 3231
+      </div>
+
       <div className="storageCopyRow">
 
-      <input
-        className="storageCopyInput"
-        value="3234-3235-3234-3231"
-        readOnly
-        name="name2"
-        id="onthewayupInput"
-        autoComplete="none"
-      />
+        <input
+          className="storageCopyInput"
+          value="3234-3235-3234-3231"
+          readOnly
+          name="name2"
+          id="onthewayupInput"
+          autoComplete="none"
+        />
 
-      <button
-        className="minorBtn"
-        onClick={() => navigator.clipboard.writeText("3234-3235-3234-3231")}
-      >
-      Copy to clipboard
-      </button>
+        <button
+          className="minorBtn"
+          onClick={() => navigator.clipboard.writeText("3234-3235-3234-3231")}
+        >
+        Copy to clipboard
+        </button>
 
       </div>
 
@@ -590,7 +592,9 @@ export default function App() {
       <footer className="appFooter">
         <div className="footerInner">
           <div className="footerLeft">
-
+            <div className="footerVersion">
+            v0.1.0
+            </div>
             <div className="footerCredits">
               Made with love for <a href="https://maplelegends.com/" target="_blank" rel="noreferrer">MapleLegends</a>, but not affiliated. For feedback, please DM thsscapi on <a href="https://forum.maplelegends.com/index.php?conversations/add&amp;to=thsscapi" target="_blank" rel="noreferrer">ML forums</a>.
               <br/>Image credits: xMiho, n2ghtygirl, iFredaz, FrozenCarrot, Fredl
