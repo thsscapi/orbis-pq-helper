@@ -549,7 +549,7 @@ export default function App() {
       >
 
       <p className="para">
-      Hit the levers in the sequence shown, about once every 1.5s.
+      Hit the levers in the sequence shown, with at least 1.5 seconds between each hit.
       </p>
 
       <div className="leverSequenceMobile">
