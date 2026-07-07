@@ -299,7 +299,7 @@ export default function App() {
 
         <p className="appDescription">
           A small helper tool for Orbis PQ (MapleLegends). It is designed to be a one-stop reference for leading OPQ.
-         <br/>This app does not teach you how to run OPQ. For that, I highly recommend <a href="https://forum.maplelegends.com/index.php?threads/orbis-party-quest-guide.54745/">Hondony's Orbis Party Quest Guide</a>.
+         <br/>This app does not teach you how to run OPQ. For that, I highly recommend <a href="https://forum.legends.ml/index.php?threads/orbis-party-quest-guide.54745/">Hondony's Orbis Party Quest Guide</a>.
         </p>
 
         <div className="appCredits">
@@ -313,7 +313,7 @@ export default function App() {
         title="Entrance"
         locked
         pieceCount={20}
-        pieceIcon="https://maplelegends.com/static/images/lib/item/04001063.png"
+        pieceIcon="https://legends.ml/static/images/lib/item/04001063.png"
       />
 
       {/* Lobby */}
@@ -321,7 +321,7 @@ export default function App() {
         title="Lobby"
         isOpen={acc.lobby}
         onToggle={() => toggleAcc("lobby")}
-        statueIcon="https://maplelegends.com/static/images/lib/item/04001046.png"
+        statueIcon="https://legends.ml/static/images/lib/item/04001046.png"
       >
         <ServerDay />
         <ImgBlock src={ASSETS.lobbyMap} alt="Lobby map" />
@@ -329,7 +329,7 @@ export default function App() {
           <div className="legendCell icon">
             <img
               className="legendIcon"
-              src="https://maplelegends.com/static/images/lib/character/01072264.png"
+              src="https://legends.ml/static/images/lib/character/01072264.png"
               alt="Silver Strap Shoes"
               loading="lazy"
             />
@@ -339,7 +339,7 @@ export default function App() {
           <div className="legendCell icon">
             <img
               className="legendIcon"
-              src="https://maplelegends.com/static/images/lib/skill/2101002.png"
+              src="https://legends.ml/static/images/lib/skill/2101002.png"
               alt="Teleport"
               loading="lazy"
             />
@@ -349,7 +349,7 @@ export default function App() {
           <div className="legendCell icon">
             <img
               className="legendIcon"
-              src="https://maplelegends.com/static/images/lib/skill/4101004.png"
+              src="https://legends.ml/static/images/lib/skill/4101004.png"
               alt="Haste"
               loading="lazy"
             />
@@ -359,7 +359,7 @@ export default function App() {
           <div className="legendCell icon">
             <img
               className="legendIcon"
-              src="https://maplelegends.com/static/images/lib/skill/5201005.png"
+              src="https://legends.ml/static/images/lib/skill/5201005.png"
               alt="Wings"
               loading="lazy"
             />
@@ -370,7 +370,7 @@ export default function App() {
         <div className="attrib">
           Requirements as worked out by{" "}
           <a
-            href="https://forum.maplelegends.com/index.php?members/hondony.55099/"
+            href="https://forum.legends.ml/index.php?members/hondony.55099/"
             target="_blank"
             rel="noreferrer"
           >
@@ -378,7 +378,7 @@ export default function App() {
           </a>
           {" "}in their{" "}
           <a
-            href="https://forum.maplelegends.com/index.php?threads/orbis-party-quest-guide.54745/"
+            href="https://forum.legends.ml/index.php?threads/orbis-party-quest-guide.54745/"
             target="_blank"
             rel="noreferrer"
           >
@@ -393,15 +393,15 @@ export default function App() {
         title="Lounge"
         isOpen={acc.lounge}
         onToggle={() => toggleAcc("lounge")}
-        statueIcon="https://maplelegends.com/static/images/lib/item/04001048.png"
+        statueIcon="https://legends.ml/static/images/lib/item/04001048.png"
         pieceCount={40}
-        pieceIcon="https://maplelegends.com/static/images/lib/item/04001052.png"
+        pieceIcon="https://legends.ml/static/images/lib/item/04001052.png"
       >
         <ImgBlock src={ASSETS.loungeMap} alt="Lounge Dark Room map" />
         <div className="attrib">
           Dark Room image from{" "}
           <a
-            href="https://forum.maplelegends.com/index.php?members/hondony.55099/"
+            href="https://forum.legends.ml/index.php?members/hondony.55099/"
             target="_blank"
             rel="noreferrer"
           >
@@ -409,7 +409,7 @@ export default function App() {
           </a>
           &apos;s{" "}
           <a
-            href="https://forum.maplelegends.com/index.php?threads/orbis-party-quest-guide.54745/"
+            href="https://forum.legends.ml/index.php?threads/orbis-party-quest-guide.54745/"
             target="_blank"
             rel="noreferrer"
           >
@@ -424,7 +424,7 @@ export default function App() {
         title="Sealed Room"
         isOpen={acc.sealed}
         onToggle={() => toggleAcc("sealed")}
-        statueIcon="https://maplelegends.com/static/images/lib/item/04001047.png"
+        statueIcon="https://legends.ml/static/images/lib/item/04001047.png"
       >
 
         <p className="para">
@@ -468,7 +468,7 @@ export default function App() {
                 <div className="eakLabel">
                   <img
                     className="eakIcon"
-                    src="https://maplelegends.com/static/images/lib/npc/2013001.png"
+                    src="https://legends.ml/static/images/lib/npc/2013001.png"
                   />
                   <span>Eak says:</span>
                 </div>
@@ -540,7 +540,7 @@ export default function App() {
         title="Storage"
         isOpen={acc.storage}
         onToggle={() => toggleAcc("storage")}
-        statueIcon="https://maplelegends.com/static/images/lib/item/04001045.png"
+        statueIcon="https://legends.ml/static/images/lib/item/04001045.png"
       >
         <StorageTracker />
       </Accordion>
@@ -549,9 +549,9 @@ export default function App() {
       <Accordion
         title="Walkway"
         locked
-        statueIcon="https://maplelegends.com/static/images/lib/item/04001044.png"
+        statueIcon="https://legends.ml/static/images/lib/item/04001044.png"
         pieceCount={30}
-        pieceIcon="https://maplelegends.com/static/images/lib/item/04001050.png"
+        pieceIcon="https://legends.ml/static/images/lib/item/04001050.png"
       />
 
       {/* On The Way Up */}
@@ -559,7 +559,7 @@ export default function App() {
         title="On The Way Up"
         isOpen={acc.up}
         onToggle={() => toggleAcc("up")}
-        statueIcon="https://maplelegends.com/static/images/lib/item/04001049.png"
+        statueIcon="https://legends.ml/static/images/lib/item/04001049.png"
       >
 
       <p className="para">
@@ -607,7 +607,7 @@ export default function App() {
         <div className="attrib">
           Statue Piece Location image from{" "}
           <a
-            href="https://forum.maplelegends.com/index.php?members/hondony.55099/"
+            href="https://forum.legends.ml/index.php?members/hondony.55099/"
             target="_blank"
             rel="noreferrer"
           >
@@ -615,7 +615,7 @@ export default function App() {
           </a>
           &apos;s{" "}
           <a
-            href="https://forum.maplelegends.com/index.php?threads/orbis-party-quest-guide.54745/"
+            href="https://forum.legends.ml/index.php?threads/orbis-party-quest-guide.54745/"
             target="_blank"
             rel="noreferrer"
           >
@@ -629,10 +629,10 @@ export default function App() {
         <div className="footerInner">
           <div className="footerLeft">
             <div className="footerLinks">
-              Other MapleLegends tools by Sparrow: <a href="https://pf-navigator.vercel.app/"><img src="https://maplelegends.com/static/images/lib/item/03992040.png"/>Phantom Forest Navigator</a>
+              Other MapleLegends tools by Sparrow: <a href="https://pf-navigator.vercel.app/"><img src="https://legends.ml/static/images/lib/item/03992040.png"/>Phantom Forest Navigator</a>
             </div>
             <div className="footerCredits">
-              Made with love for <a href="https://maplelegends.com/" target="_blank" rel="noreferrer">MapleLegends</a>, but not affiliated. For feedback, please DM thsscapi on <a href="https://forum.maplelegends.com/index.php?conversations/add&amp;to=thsscapi" target="_blank" rel="noreferrer">ML forums</a>.
+              Made with love for <a href="https://legends.ml/" target="_blank" rel="noreferrer">MapleLegends</a>, but not affiliated. For feedback, please DM thsscapi on <a href="https://forum.legends.ml/index.php?conversations/add&amp;to=thsscapi" target="_blank" rel="noreferrer">ML forums</a>.
               <br/>Image credits: xMiho, n2ghtygirl, iFredaz, FrozenCarrot, Fredl
             </div>
           </div>
@@ -643,7 +643,7 @@ export default function App() {
               rel="noreferrer"
               className="donateBtn"
             >
-              <img src="https://maplelegends.com/static/images/lib/item/02030008.png" alt="Coffee Milk" className="donateImage"/>  If you found this tool useful, consider giving me a tip
+              <img src="https://legends.ml/static/images/lib/item/02030008.png" alt="Coffee Milk" className="donateImage"/>  If you found this tool useful, consider giving me a tip
             </a>
           </div>
         </div>
