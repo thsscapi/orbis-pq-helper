@@ -629,7 +629,7 @@ export default function App() {
         <div className="footerInner">
           <div className="footerLeft">
             <div className="footerLinks">
-              Other MapleLegends tools by Sparrow: <a href="https://pf-navigator.vercel.app/"><img src="https://legends.ml/static/images/lib/item/03992040.png"/>Phantom Forest Navigator</a>
+              Other MapleLegends tools by Sparrow: <a href="https://pf-navigator.vercel.app/"><img src="https://legends.ml/static/images/lib/item/03992040.png"/>Phantom Forest Navigator</a>{" "}<a href="https://afk-service-helper.vercel.app/"><img src="https://legends.ml/static/images/lib/skill/2321006.png"/>AFK Service Helper</a>
             </div>
             <div className="footerCredits">
               Made with love for <a href="https://legends.ml/" target="_blank" rel="noreferrer">MapleLegends</a>, but not affiliated. For feedback, please DM thsscapi on <a href="https://forum.legends.ml/index.php?conversations/add&amp;to=thsscapi" target="_blank" rel="noreferrer">ML forums</a>.
