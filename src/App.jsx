@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import "./App.css";
 
 /* -------------------------
@@ -10,6 +10,8 @@ const PROBES = [
   { id: "410", text: "Check 4-1-0", imgSrc: "/img/410.png" },
   { id: "401", text: "Check 4-0-1", imgSrc: "/img/401.png" },
 ];
+
+const ACC_KEYS = ["lobby", "lounge", "sealed", "storage", "up", "tower"];
 
 function resolveChain({ r500, r410, r401 }) {
   if (r500 == null || r410 == null || r401 == null) return null;
@@ -44,17 +46,27 @@ function Accordion({
   statueIcon,
   pieceCount,
   pieceIcon,
+  description,
   locked = false,
   children,
 }) {
   return (
-    <section className={`acc ${locked ? "locked" : ""}`}>
+    <section className={`acc ${locked ? "locked" : ""} ${isOpen ? "isOpen" : ""}`}>
       <button
         className="accHeader"
         onClick={locked ? undefined : onToggle}
         type="button"
+        aria-expanded={locked ? undefined : isOpen}
+        disabled={locked}
       >
-        <span className="accTitle">{title}</span>
+        <span className="accHeading">
+          <span className="accTitle">{title}</span>
+          {!locked && (
+            <span className="accMeta">
+              {description && <span>{description}</span>}
+            </span>
+          )}
+        </span>
 
         <span className="accHeaderRight">
           {pieceCount != null && (
@@ -72,9 +84,8 @@ function Accordion({
             className={`accChevron ${!locked && isOpen ? "open" : ""} ${
               locked ? "hiddenChevron" : ""
             }`}
-          >
-            ▾
-          </span>
+            aria-hidden="true"
+          />
         </span>
       </button>
 
@@ -141,7 +152,7 @@ function ImgBlock({ src, alt }) {
    Storage tracker
 -------------------------- */
 
-function StorageTracker() {
+function StorageTracker({ onFeedback, onDirtyChange }) {
   const order = [1, 10, 9, 13, 11, 6, 12, 2, 5, 15, 8, 4, 7, 3, 14];
 
   const [index, setIndex] = useState(0);
@@ -151,17 +162,26 @@ function StorageTracker() {
 
   function handleKilled() {
     setIndex((i) => Math.min(i + 1, order.length));
+    onFeedback("Sequence updated");
   }
 
   function handleReset() {
     setIndex(0);
+    onFeedback("Sequence reset");
   }
 
   async function handleCopyRemaining() {
     try {
       await navigator.clipboard.writeText(remainingText);
-    } catch {}
+      onFeedback("Copied!");
+    } catch {
+      onFeedback("Copy failed");
+    }
   }
+
+  useEffect(() => {
+    onDirtyChange(index > 0);
+  }, [index, onDirtyChange]);
 
   return (
     <div className="storageWrap">
@@ -191,7 +211,7 @@ function StorageTracker() {
 
       <div className="storageControls">
         <button className="minorBtn" onClick={handleKilled}>Cellion Spawned</button>
-        <button className="minorBtn" onClick={handleReset}>Reset</button>
+        <button className="resetBtn sectionReset" onClick={handleReset} disabled={index === 0}>Reset</button>
       </div>
     </div>
   );
@@ -202,6 +222,18 @@ function StorageTracker() {
 -------------------------- */
 
 export default function App() {
+
+  const [feedback, setFeedback] = useState("");
+  const feedbackTimer = useRef(null);
+  const resultRef = useRef(null);
+  const [showResetConfirm, setShowResetConfirm] = useState(false);
+  const [storageDirty, setStorageDirty] = useState(false);
+
+  function announce(message) {
+    setFeedback(message);
+    clearTimeout(feedbackTimer.current);
+    feedbackTimer.current = setTimeout(() => setFeedback(""), 2200);
+  }
 
   const [sel, setSel] = useState({
     "500": null,
@@ -236,15 +268,25 @@ export default function App() {
   function setProbe(id, value) {
     setSel((prev) => ({ ...prev, [id]: value }));
     setChainDone(new Set());
+    announce("Answer selected");
   }
 
   function toggleChain(step) {
     setChainDone((prev) => {
       const next = new Set(prev);
       next.has(step) ? next.delete(step) : next.add(step);
+      if (chain && next.size === chain.length) {
+        setTimeout(() => announce("Sequence complete"), 0);
+      }
       return next;
     });
   }
+
+  useEffect(() => {
+    if (allSelected) {
+      requestAnimationFrame(() => resultRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }));
+    }
+  }, [allSelected]);
 
   const [acc, setAcc] = useState({
     lobby: false,
@@ -267,9 +309,8 @@ export default function App() {
     });
 
     setChainDone(new Set());
+    announce("Puzzle reset");
   }
-
-  const ACC_KEYS = ["lobby", "lounge", "sealed", "storage", "up", "tower"];
 
   const allOpen = useMemo(() => {
     return ACC_KEYS.every((k) => acc[k]);
@@ -284,7 +325,13 @@ export default function App() {
     });
   }
 
+  const sealedDirty = Object.values(sel).some((value) => value != null) || chainDone.size > 0;
+  const initialAcc = { lobby: false, lounge: false, sealed: true, storage: false, up: false, tower: false };
+  const accordionDirty = ACC_KEYS.some((key) => acc[key] !== initialAcc[key]);
+  const appDirty = sealedDirty || storageDirty || accordionDirty || showEakHelp;
+
   function resetApp() {
+    setShowResetConfirm(false);
     window.location.reload();
   }
 
@@ -297,7 +344,7 @@ export default function App() {
           Sparrow's OPQ Helper
         </h1>
 
-        <p className="appDescription">
+        <p className="appDescription desktopIntro">
           A small helper tool for Orbis PQ (MapleLegends). It is designed to be a one-stop reference for leading OPQ.
          <br/>This app does not teach you how to run OPQ. For that, I highly recommend <a href="https://forum.legends.ml/index.php?threads/orbis-party-quest-guide.54745/">Hondony's Orbis Party Quest Guide</a>.
         </p>
@@ -306,7 +353,27 @@ export default function App() {
           Created by: <strong>thsscapi (Sparrow)</strong>
         </div>
 
+        <div className="mobileIntro">
+          <p>Quick reference and puzzle tools for leading OPQ.</p>
+          <details>
+            <summary>About this helper</summary>
+            <div>
+              This is a one-stop reference for Orbis PQ (MapleLegends), not a full tutorial. See <a href="https://forum.legends.ml/index.php?threads/orbis-party-quest-guide.54745/">Hondony&apos;s Orbis Party Quest Guide</a> to learn the run.<br />
+              Created by <strong>thsscapi (Sparrow)</strong>.
+            </div>
+          </details>
+        </div>
+
       </header>
+
+      <div className="appToolbar" aria-label="App controls">
+        <button className="toolbarBtn primaryAction" onClick={toggleAllAccordions}>
+          {allOpen ? "Collapse all" : "Expand all"}
+        </button>
+        <button className="toolbarBtn globalReset" onClick={() => setShowResetConfirm(true)} disabled={!appDirty}>
+          Reset app
+        </button>
+      </div>
 
       {/* Entrance */}
       <Accordion
@@ -319,6 +386,7 @@ export default function App() {
       {/* Lobby */}
       <Accordion
         title="Lobby"
+        description="Route requirements"
         isOpen={acc.lobby}
         onToggle={() => toggleAcc("lobby")}
         statueIcon="https://legends.ml/static/images/lib/item/04001046.png"
@@ -391,6 +459,7 @@ export default function App() {
       {/* Lounge */}
       <Accordion
         title="Lounge"
+        description="Dark Room map"
         isOpen={acc.lounge}
         onToggle={() => toggleAcc("lounge")}
         statueIcon="https://legends.ml/static/images/lib/item/04001048.png"
@@ -422,6 +491,7 @@ export default function App() {
       {/* Sealed Room */}
       <Accordion
         title="Sealed Room"
+        description="Platform solver"
         isOpen={acc.sealed}
         onToggle={() => toggleAcc("sealed")}
         statueIcon="https://legends.ml/static/images/lib/item/04001047.png"
@@ -494,6 +564,7 @@ export default function App() {
           })}
         </div>
 
+        <div ref={resultRef}>
         {allSelected && !chain && (
           <div className="error">
             Pattern {patternDashed} cannot occur in the puzzle. Please recheck the results from the NPC.
@@ -509,7 +580,7 @@ export default function App() {
             </div>
 
             <div className="chainList">
-              {chain.map((step, idx) => {
+              {chain.map((step) => {
                 const done = chainDone.has(step);
 
                 return (
@@ -527,9 +598,10 @@ export default function App() {
 
           </div>
         )}
+        </div>
 
         <div className="sealedControls">
-          <button className="minorBtn" onClick={resetSealedRoom}>
+          <button className="resetBtn sectionReset" onClick={resetSealedRoom} disabled={!sealedDirty}>
             Reset
           </button>
         </div>
@@ -538,11 +610,12 @@ export default function App() {
       {/* Storage */}
       <Accordion
         title="Storage"
+        description="Cellion order tracker"
         isOpen={acc.storage}
         onToggle={() => toggleAcc("storage")}
         statueIcon="https://legends.ml/static/images/lib/item/04001045.png"
       >
-        <StorageTracker />
+        <StorageTracker onFeedback={announce} onDirtyChange={setStorageDirty} />
       </Accordion>
 
       {/* Walkway */}
@@ -557,6 +630,7 @@ export default function App() {
       {/* On The Way Up */}
       <Accordion
         title="On The Way Up"
+        description="Lever sequence"
         isOpen={acc.up}
         onToggle={() => toggleAcc("up")}
         statueIcon="https://legends.ml/static/images/lib/item/04001049.png"
@@ -583,7 +657,14 @@ export default function App() {
 
         <button
           className="minorBtn"
-          onClick={() => navigator.clipboard.writeText("3234-3235-3234-3231")}
+          onClick={async () => {
+            try {
+              await navigator.clipboard.writeText("3234-3235-3234-3231");
+              announce("Copied!");
+            } catch {
+              announce("Copy failed");
+            }
+          }}
         >
         Copy to clipboard
         </button>
@@ -600,6 +681,7 @@ export default function App() {
       {/* Tower */}
       <Accordion
         title="Tower"
+        description="Statue piece locations"
         isOpen={acc.tower}
         onToggle={() => toggleAcc("tower")}
       >
@@ -650,15 +732,22 @@ export default function App() {
 
       </footer>
 
-      <div className="floatingBtns">
-        <button className="floatingBtn" onClick={toggleAllAccordions}>
-          {allOpen ? "Close all" : "Open all"}
-        </button>
-
-        <button className="floatingBtn danger" onClick={resetApp}>
-          Reset app
-        </button>
+      <div className={`toast ${feedback ? "visible" : ""}`} role="status" aria-live="polite">
+        {feedback}
       </div>
+
+      {showResetConfirm && (
+        <div className="modalBackdrop" role="presentation" onMouseDown={() => setShowResetConfirm(false)}>
+          <div className="confirmDialog" role="alertdialog" aria-modal="true" aria-labelledby="reset-title" onMouseDown={(event) => event.stopPropagation()}>
+            <h2 id="reset-title">Reset the entire app?</h2>
+            <p>This clears all answers, trackers, and open sections.</p>
+            <div className="confirmActions">
+              <button className="minorBtn" onClick={() => setShowResetConfirm(false)}>Cancel</button>
+              <button className="resetBtn globalReset" onClick={resetApp}>Reset app</button>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );

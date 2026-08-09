@@ -70,6 +70,35 @@ body {
   text-align: center;
 }
 
+.mobileIntro {
+  display: none;
+}
+
+.appToolbar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin: 0 0 12px;
+  z-index: 20;
+}
+
+.toolbarBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: #121821;
+  color: #f3f4f6;
+  padding: 9px 14px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.toolbarBtn.primaryAction {
+  border-color: rgba(252, 133, 0, 0.75);
+}
+
 /* Accordion */
 
 .acc {
@@ -78,6 +107,13 @@ body {
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.03);
   margin-bottom: 12px;
+  border-left: 4px solid transparent;
+  transition: border-color 160ms ease, background 160ms ease, transform 100ms ease;
+}
+
+.acc.isOpen {
+  border-left-color: #fc8500;
+  background: rgba(252, 133, 0, 0.045);
 }
 
 .accHeader {
@@ -89,16 +125,58 @@ body {
   display: flex;
   justify-content: space-between;
   cursor: pointer;
+  align-items: center;
+  min-height: 58px;
+  text-align: left;
+  border-radius: 11px;
+  transition: background 120ms ease, transform 80ms ease;
+}
+
+.acc:not(.locked) .accHeader:hover {
+  background: rgba(255, 255, 255, 0.065);
+}
+
+.acc:not(.locked) .accHeader:active {
+  background: rgba(252, 133, 0, 0.1);
+  transform: translateY(1px);
+}
+
+.accHeader:focus-visible {
+  outline: 2px solid #fc8500;
+  outline-offset: -3px;
+}
+
+.accHeader:disabled {
+  opacity: 1;
+  cursor: default;
+}
+
+.accHeading {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
 }
 
 .accTitle {
   font-weight: 900;
 }
 
+.accMeta {
+  display: flex;
+  gap: 8px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: rgba(243, 244, 246, 0.52);
+}
+
 .accHeaderRight {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.pieceCount {
+  font-weight: 800;
 }
 
 .accHeaderIcon {
@@ -108,12 +186,31 @@ body {
 }
 
 .accChevron {
-  transform: rotate(-90deg);
-  transition: transform 120ms ease;
+  width: 28px;
+  height: 28px;
+  position: relative;
+  flex: 0 0 28px;
+  transition: transform 160ms ease;
+}
+
+.accChevron::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  border-top: 2px solid rgba(255, 255, 255, 0.9);
+  border-right: 2px solid rgba(255, 255, 255, 0.9);
+  transform: translate(-65%, -50%) rotate(45deg);
 }
 
 .accChevron.open {
-  transform: rotate(0deg);
+  transform: rotate(90deg);
+}
+
+.accChevron.open::before {
+  border-color: #fc8500;
 }
 
 .hiddenChevron {
@@ -179,7 +276,7 @@ body {
 /* Buttons */
 
 button {
-  border-color: #fc8500;
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .btnRow {
@@ -224,6 +321,35 @@ button {
   padding: 8px 12px;
   cursor: pointer;
   font-weight: 700;
+}
+
+.minorBtn:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+.resetBtn {
+  min-height: 40px;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.sectionReset {
+  color: rgba(243, 244, 246, 0.78);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.globalReset {
+  color: #fecaca;
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.45);
 }
 
 /* Sealed Room */
@@ -506,35 +632,61 @@ button {
   color: #f7f7f7;
 }
 
-/* Floating buttons */
-
-.floatingBtns {
+.toast {
   position: fixed;
-  right: 16px;
-  bottom: 16px;
+  left: 50%;
+  bottom: 24px;
+  z-index: 1000;
+  transform: translate(-50%, 12px);
+  padding: 10px 16px;
+  border: 1px solid rgba(252, 133, 0, 0.65);
+  border-radius: 999px;
+  background: #171d26;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+  font-weight: 800;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.toast.visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
   display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.confirmDialog {
+  width: min(420px, 100%);
+  padding: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  background: #121821;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+}
+
+.confirmDialog h2 {
+  margin: 0 0 8px;
+  font-size: 1.3rem;
+}
+
+.confirmDialog p {
+  margin: 0 0 20px;
+  color: rgba(243, 244, 246, 0.7);
+}
+
+.confirmActions {
+  display: flex;
+  justify-content: flex-end;
   gap: 10px;
-  z-index: 999;
-}
-
-.floatingBtn {
-  border: 1px solid rgba(252, 133, 0, 0.55);
-  background: rgba(20, 26, 36, 0.9);
-  color: #f3f4f6;
-  border-radius: 14px;
-  padding: 10px 14px;
-  font-weight: 900;
-  cursor: pointer;
-  backdrop-filter: blur(6px);
-}
-
-.floatingBtn:hover {
-  border-color: rgba(252, 133, 0, 0.75);
-}
-
-.floatingBtn.danger {
-  background: rgba(239, 68, 68, 0.16);
-  border-color: rgba(239, 68, 68, 0.45);
 }
 
 /* On The Way Up mobile-only sequence */
@@ -546,6 +698,88 @@ button {
 /* Responsive */
 
 @media (max-width: 760px) {
+  .wrap {
+    padding: 16px;
+  }
+
+  .appHeader {
+    margin-bottom: 14px;
+  }
+
+  .appTitle {
+    margin: 0.4rem 0;
+    font-size: clamp(2.15rem, 11vw, 3rem);
+  }
+
+  .desktopIntro,
+  .appCredits {
+    display: none;
+  }
+
+  .mobileIntro {
+    display: block;
+    text-align: center;
+    color: rgba(243, 244, 246, 0.72);
+    font-size: 0.9rem;
+  }
+
+  .mobileIntro p {
+    margin: 0 0 6px;
+  }
+
+  .mobileIntro summary {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    color: rgba(243, 244, 246, 0.62);
+    cursor: pointer;
+  }
+
+  .mobileIntro details div {
+    padding: 4px 8px 10px;
+    font-size: 0.82rem;
+  }
+
+  .mobileIntro a {
+    color: #f1a34c;
+  }
+
+  .appToolbar {
+    position: sticky;
+    top: 0;
+    margin-inline: -8px;
+    padding: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(11, 15, 20, 0.92);
+    backdrop-filter: blur(10px);
+  }
+
+  .toolbarBtn,
+  .minorBtn,
+  .resetBtn,
+  .pickBtn,
+  .chainItem {
+    min-height: 44px;
+  }
+
+  .accHeader {
+    min-height: 64px;
+    padding: 10px 12px;
+  }
+
+  .accMeta > span:first-child {
+    display: none;
+  }
+
+  .accHeaderRight {
+    gap: 5px;
+  }
+
+  .accHeaderIcon {
+    width: 24px;
+    height: 24px;
+  }
+
   .legendGrid {
     grid-template-columns: 72px 1fr;
   }
