@@ -707,30 +707,8 @@ export default function App() {
         </div>
       </Accordion>
 
-      <footer className="appFooter">
-        <div className="footerInner">
-          <div className="footerLeft">
-            <div className="footerLinks">
-              Other MapleLegends tools by Sparrow: <a href="https://pf-navigator.vercel.app/"><img src="https://legends.ml/static/images/lib/item/03992040.png"/>Phantom Forest Navigator</a>{" "}<a href="https://afk-service-helper.vercel.app/"><img src="https://legends.ml/static/images/lib/skill/2321006.png"/>AFK Service Helper</a>
-            </div>
-            <div className="footerCredits">
-              Made with love for <a href="https://legends.ml/" target="_blank" rel="noreferrer">MapleLegends</a>, but not affiliated. For feedback, please DM thsscapi on <a href="https://forum.legends.ml/index.php?conversations/add&amp;to=thsscapi" target="_blank" rel="noreferrer">ML forums</a>.
-              <br/>Image credits: xMiho, n2ghtygirl, iFredaz, FrozenCarrot, Fredl
-            </div>
-          </div>
-          <div className="footerRight">
-            <a
-              href="https://ko-fi.com/thsscapi"
-              target="_blank"
-              rel="noreferrer"
-              className="donateBtn"
-            >
-              <img src="https://legends.ml/static/images/lib/item/02030008.png" alt="Coffee Milk" className="donateImage"/>  If you found this tool useful, consider giving me a tip
-            </a>
-          </div>
-        </div>
-
-      </footer>
+      <div className="attrib">Image credits: xMiho, n2ghtygirl, iFredaz, FrozenCarrot, Fredl</div>
+<footer className="sparrowFooter"><div className="sparrowFooterInner"><div className="sparrowFooterLeft"><div>Other MapleLegends tools by Sparrow:</div><nav className="sparrowOtherApps" aria-label="Other tools by Sparrow"><a href="https://pf-navigator.vercel.app/" target="_blank" rel="noopener noreferrer"><img src="https://legends.ml/static/images/lib/item/03992040.png" alt="" loading="lazy" />Phantom Forest Navigator</a><a href="https://afk-service-helper.vercel.app/" target="_blank" rel="noopener noreferrer"><img src="https://legends.ml/static/images/lib/skill/2321006.png" alt="" loading="lazy" />AFK Service Helper</a><a href="https://stat-per-wa.vercel.app/" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">🧮</span>Stat per WA Calculator</a></nav><div className="sparrowFooterCredits">Made with love for <a href="https://legends.ml/" target="_blank" rel="noopener noreferrer">MapleLegends</a>, but not affiliated. For feedback, please DM thsscapi on <a href="https://forum.legends.ml/index.php?conversations/add&amp;to=thsscapi" target="_blank" rel="noopener noreferrer">ML forums</a>.</div></div><a href="https://ko-fi.com/thsscapi" target="_blank" rel="noopener noreferrer" className="sparrowDonate"><img src="https://legends.ml/static/images/lib/item/02030008.png" alt="Coffee Milk" loading="lazy" />If you found this tool useful, consider giving me a tip</a></div></footer>
 
       <div className={`toast ${feedback ? "visible" : ""}`} role="status" aria-live="polite">
         {feedback}
