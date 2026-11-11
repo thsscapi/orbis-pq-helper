@@ -350,7 +350,7 @@ export default function App() {
         </p>
 
         <div className="appCredits">
-          Created by: <strong>thsscapi (Sparrow)</strong>
+          Created by: <strong>thsscapi (Sparrow)</strong> · <a href="https://sparrowtools.net/">Browse my other tools</a>
         </div>
 
         <div className="mobileIntro">
