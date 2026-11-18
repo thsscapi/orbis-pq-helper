@@ -538,7 +538,7 @@ export default function App() {
                 <div className="eakLabel">
                   <img
                     className="eakIcon"
-                    src="/images/npc/2013001.png"
+                    src="/images/eak.png"
                   />
                   <span>Eak says:</span>
                 </div>
