@@ -380,7 +380,7 @@ export default function App() {
         title="Entrance"
         locked
         pieceCount={20}
-        pieceIcon="https://legends.ml/static/images/lib/item/04001063.png"
+        pieceIcon="/images/item/04001063.png"
       />
 
       {/* Lobby */}
@@ -389,7 +389,7 @@ export default function App() {
         description="Route requirements"
         isOpen={acc.lobby}
         onToggle={() => toggleAcc("lobby")}
-        statueIcon="https://legends.ml/static/images/lib/item/04001046.png"
+        statueIcon="/images/item/04001046.png"
       >
         <ServerDay />
         <ImgBlock src={ASSETS.lobbyMap} alt="Lobby map" />
@@ -397,7 +397,7 @@ export default function App() {
           <div className="legendCell icon">
             <img
               className="legendIcon"
-              src="https://legends.ml/static/images/lib/character/01072264.png"
+              src="/images/character/01072264.png"
               alt="Silver Strap Shoes"
               loading="lazy"
             />
@@ -407,7 +407,7 @@ export default function App() {
           <div className="legendCell icon">
             <img
               className="legendIcon"
-              src="https://legends.ml/static/images/lib/skill/2101002.png"
+              src="/images/skill/2101002.png"
               alt="Teleport"
               loading="lazy"
             />
@@ -417,7 +417,7 @@ export default function App() {
           <div className="legendCell icon">
             <img
               className="legendIcon"
-              src="https://legends.ml/static/images/lib/skill/4101004.png"
+              src="/images/skill/4101004.png"
               alt="Haste"
               loading="lazy"
             />
@@ -427,7 +427,7 @@ export default function App() {
           <div className="legendCell icon">
             <img
               className="legendIcon"
-              src="https://legends.ml/static/images/lib/skill/5201005.png"
+              src="/images/skill/5201005.png"
               alt="Wings"
               loading="lazy"
             />
@@ -462,9 +462,9 @@ export default function App() {
         description="Dark Room map"
         isOpen={acc.lounge}
         onToggle={() => toggleAcc("lounge")}
-        statueIcon="https://legends.ml/static/images/lib/item/04001048.png"
+        statueIcon="/images/item/04001048.png"
         pieceCount={40}
-        pieceIcon="https://legends.ml/static/images/lib/item/04001052.png"
+        pieceIcon="/images/item/04001052.png"
       >
         <ImgBlock src={ASSETS.loungeMap} alt="Lounge Dark Room map" />
         <div className="attrib">
@@ -494,7 +494,7 @@ export default function App() {
         description="Platform solver"
         isOpen={acc.sealed}
         onToggle={() => toggleAcc("sealed")}
-        statueIcon="https://legends.ml/static/images/lib/item/04001047.png"
+        statueIcon="/images/item/04001047.png"
       >
 
         <p className="para">
@@ -538,7 +538,7 @@ export default function App() {
                 <div className="eakLabel">
                   <img
                     className="eakIcon"
-                    src="https://legends.ml/static/images/lib/npc/2013001.png"
+                    src="/images/npc/2013001.png"
                   />
                   <span>Eak says:</span>
                 </div>
@@ -613,7 +613,7 @@ export default function App() {
         description="Cellion order tracker"
         isOpen={acc.storage}
         onToggle={() => toggleAcc("storage")}
-        statueIcon="https://legends.ml/static/images/lib/item/04001045.png"
+        statueIcon="/images/item/04001045.png"
       >
         <StorageTracker onFeedback={announce} onDirtyChange={setStorageDirty} />
       </Accordion>
@@ -622,9 +622,9 @@ export default function App() {
       <Accordion
         title="Walkway"
         locked
-        statueIcon="https://legends.ml/static/images/lib/item/04001044.png"
+        statueIcon="/images/item/04001044.png"
         pieceCount={30}
-        pieceIcon="https://legends.ml/static/images/lib/item/04001050.png"
+        pieceIcon="/images/item/04001050.png"
       />
 
       {/* On The Way Up */}
@@ -633,7 +633,7 @@ export default function App() {
         description="Lever sequence"
         isOpen={acc.up}
         onToggle={() => toggleAcc("up")}
-        statueIcon="https://legends.ml/static/images/lib/item/04001049.png"
+        statueIcon="/images/item/04001049.png"
       >
 
       <p className="para">
