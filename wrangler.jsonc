@@ -1,0 +1,8 @@
+{
+  "name": "sparrow-orbispq",
+  "compatibility_date": "2026-11-18",
+  "assets": { "directory": "./dist" },
+  "routes": [{ "pattern": "orbispq.sparrowtools.net", "custom_domain": true }],
+  "workers_dev": false,
+  "preview_urls": false
+}
